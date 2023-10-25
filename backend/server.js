@@ -1,6 +1,7 @@
 const app = require("./app");
 const connectDatabase = require("./db/Database");
 const cloudinary = require("cloudinary");
+const path = require('path')
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -28,10 +29,14 @@ cloudinary.config({
 // create server
 const server = app.listen(process.env.PORT, () => {
   console.log(
-    `Server is running on http://localhost:${process.env.PORT}`
+    `Server is running on http://simuni-gebeya.azurewebsites.net:${process.env.PORT}`
   );
 });
-
+// production script
+app.use(express.static("./backend/build"));
+app.get("*",(req, res)=>{
+  res.sendFile(path.resolve(__dirname,"backend","build","index.html"))
+})
 // unhandled promise rejection
 process.on("unhandledRejection", (err) => {
   console.log(`Shutting down the server for ${err.message}`);
