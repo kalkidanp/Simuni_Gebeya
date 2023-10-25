@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: ['https://eshop-tutorial-pyri.vercel.app',],
+  origin: 'http://localhost:3000',
   credentials: true
 }));
 
@@ -37,6 +37,8 @@ const conversation = require("./controller/conversation");
 const message = require("./controller/message");
 const withdraw = require("./controller/withdraw");
 
+
+
 app.use("/api/v2/user", user);
 app.use("/api/v2/conversation", conversation);
 app.use("/api/v2/message", message);
@@ -52,3 +54,4 @@ app.use("/api/v2/withdraw", withdraw);
 app.use(ErrorHandler);
 
 module.exports = app;
+
